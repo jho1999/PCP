@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1600975867185.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "2|50|77|0|\n81|27|90|0|\n92|35|110|0|\n112|192|183|0|\n185|207|259|0|\n261|204|336|0|\n338|194|413|0|\n415|208|425|0|\n",
+    "hash" : "3532023796",
+    "id" : "5F2C3FCA",
+    "lastKnownWriteTime" : 1600981580,
+    "last_content_update" : 1600981580528,
+    "path" : "~/Academia/ITAM/2020.3 Otoño/Planeación y Control de la Producción/CompApp1_ForecastAPP/CompApp1_ForecastAPP/forecastAndAggProdFunctions.R",
+    "project_path" : "forecastAndAggProdFunctions.R",
+    "properties" : {
+        "cursorPosition" : "425,1",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

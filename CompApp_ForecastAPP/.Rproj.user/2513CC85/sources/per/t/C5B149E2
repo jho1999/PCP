@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1600972165446.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "97343477",
+    "id" : "C5B149E2",
+    "lastKnownWriteTime" : 1600972279,
+    "last_content_update" : 1600972279211,
+    "path" : "~/ITAM/7 semestre/PCP/CompApp1_ForecastAPP/forecastAndAggProdFunctions.R",
+    "project_path" : "forecastAndAggProdFunctions.R",
+    "properties" : {
+        "cursorPosition" : "391,1",
+        "scrollLine" : "369",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

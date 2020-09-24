@@ -1,0 +1,20 @@
+#Carga de paquetes
+library(readxl)
+library(fpp2)
+library(ggplot2)
+
+#---------Carga de datos
+#Lee los datos del archivo de excel, saltando las primeras 10 filas pues estaban sucias:
+domesticAutoProduction <- read_excel("DAUPSA.xlsx", skip = 10, col_names = TRUE)
+print(domesticAutoProduction)
+#-------Hacemos serie de tiempo:
+tsDomesticAutoProduction <- ts(domesticAutoProduction[,2], start = c(1993,1), frequency = 12)
+
+lambdaTest=forecastToh(ts=tsDomesticAutoProduction,endTs = c(2020,7),f=12,hF=6)
+
+test=aggLevelWorkforce(lambda=c(2760,3320,3970,3540,3180,2900),tPeriods=6,lDays=c(21,20,23,21,22,22),W0=35,I0=0,B0=0,wages=120,hire=450,fire=600,hold=5,backOrder=15,pCost=0,pLastPeriod=41383,wLastPeriod=40,dLastPeriod=260,levelWf = 38.32)
+
+test=aggNoBackorder(lambda=c(2760,3320,3970,3540,3180,2900),tPeriods=6,lDays=c(21,20,23,21,22,22),W0=35,I0=0,B0=0,wages=120,hire=450,fire=600,hold=5,backOrder=15,pCost=0,pLastPeriod=41383,wLastPeriod=40,dLastPeriod=260,levelWf = 40.18)
+
+test=aggZeroInvBack(lambda=c(2760,3320,3970,3540,3180,2900),tPeriods=6,lDays=c(21,20,23,21,22,22),W0=35,I0=0,B0=0,wages=120,hire=450,fire=600,hold=5,backOrder=15,pCost=0,pLastPeriod=41383,wLastPeriod=40,dLastPeriod=260)
+
