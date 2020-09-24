@@ -1,0 +1,76 @@
+library(shiny)
+library(readxl)
+source('forecastAnAggPlan.R')
+
+ui <- fluidPage(
+  titlePanel("Pronóstico"),
+  sidebarLayout(
+    sidebarPanel(
+      fileInput('archivo', 'Carga un archivo de Excel',
+                multiple = FALSE,
+                accept = c(
+                  ".xls",
+                  ".xlsx"
+                )
+      ),
+      tags$hr(),
+      radioButtons('nombre', '¿Los datos tienen un título?',
+                   c(Si=1,
+                     No=0
+                   )),
+      tags$hr(),
+      numericInput('year','Indique el año final', value =2020),
+      tags$hr(),
+      numericInput('month','Indique el periodo final',value=12),
+      tags$hr(),
+      numericInput('freq','Indique la frecuencia',value=12),
+      tags$hr(),
+      numericInput('horizon','Indique el horizonte de pronóstico',value=6),
+      tags$hr(),
+      numericInput('colExcel','Indique la columna de los datos',value=2),
+      tags$hr(),
+      numericInput('skipper','En caso de que los datos no inicien en la primera celda, indicar los saltos necesarios',value=0)
+      
+    ),
+    
+    mainPanel(
+      tags$style(type="text/css",
+                 ".shiny-output-error { visibility: hidden; }",
+                 ".shiny-output-error:before { visibility: hidden; }"
+      ),
+      fluidRow("Forecast",
+               splitLayout(cellWidths = c("50%", "50%"), 
+                           plotOutput("contents1"), plotOutput("contents2"))
+               
+      ))
+  )
+)
+
+server <- function(input, output) {
+  
+  data_l<-reactive({
+    inFile <- input$archivo
+    if (is.null(inFile))
+      return(NULL)
+    excelData <- read_excel(inFile$name, skip = input$skipper, col_names = (input$nombre==1))
+    data<-ts(excelData[,input$colExcel],end = c(input$year,input$month),frequency = input$freq)
+    return(data)
+  })
+  
+  output$contents1 <- renderPlot({
+    data<-data_l()
+    theForecast=forecastToh(data,endTs = c(input$year,input$month),f=input$freq,hF=input$horizon)
+    if(is.null(theForecast))
+      plot.default(main = "Data is random or insufficient")
+    else
+      plot(theForecast$mean,main=paste("Forecast with",theForecast$method))
+    print(theForecast$mean)
+    
+  })
+   output$contents2 <- renderPlot({
+     data<-data_l()
+     tsdisplay(data,main = "Time series")  
+  })
+}
+
+shinyApp(ui = ui, server = server)

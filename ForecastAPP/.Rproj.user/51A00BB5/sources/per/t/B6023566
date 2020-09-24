@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1600901090056.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2197948053",
+    "id" : "B6023566",
+    "lastKnownWriteTime" : 1600953957,
+    "last_content_update" : 1600953957764,
+    "path" : "~/Academia/ITAM/2020.3 Otoño/Planeación y Control de la Producción/ForecastAPP/pruebas.R",
+    "project_path" : "pruebas.R",
+    "properties" : {
+        "cursorPosition" : "14,34",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1600960781087.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2537579927",
+    "id" : "9B145D4C",
+    "lastKnownWriteTime" : 1600959053,
+    "last_content_update" : 1600959053,
+    "path" : "~/Academia/ITAM/2020.3 Otoño/Planeación y Control de la Producción/ForecastAPP/forecastAndAggProd/forecastAnAggPlan.R",
+    "project_path" : "forecastAndAggProd/forecastAnAggPlan.R",
+    "properties" : {
+        "cursorPosition" : "22,5",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
