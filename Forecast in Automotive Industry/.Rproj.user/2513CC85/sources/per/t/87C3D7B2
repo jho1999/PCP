@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1600193572628.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2126975243",
+    "id" : "87C3D7B2",
+    "lastKnownWriteTime" : 1600645844,
+    "last_content_update" : 1600645844776,
+    "path" : "~/ITAM/7 semestre/PCP/Forecasting/Forecast in Automotive Industry/domesticAutoProductionBeforeCOVID.R",
+    "project_path" : "domesticAutoProductionBeforeCOVID.R",
+    "properties" : {
+        "cursorPosition" : "86,0",
+        "scrollLine" : "79"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

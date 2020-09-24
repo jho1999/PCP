@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1599792383734.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2702954821",
+    "id" : "17ADC8B6",
+    "lastKnownWriteTime" : 1600645844,
+    "last_content_update" : 1600645844306,
+    "path" : "~/ITAM/7 semestre/PCP/Forecasting/Forecast in Automotive Industry/hybridCarsInMexico.R",
+    "project_path" : "hybridCarsInMexico.R",
+    "properties" : {
+        "cursorPosition" : "132,83",
+        "scrollLine" : "117",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
