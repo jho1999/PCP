@@ -1,24 +1,24 @@
 {
     "id": "5B68A133",
-    "path": "~/Documents/ITAM/7moSemestre/PCP/AggrProdPl/AggrProdPl/PrecTransferBaseModel.R",
-    "project_path": "PrecTransferBaseModel.R",
+    "path": "~/Documents/ITAM/7moSemestre/PCP/PCP/AggrProdPl/examen.R",
+    "project_path": "examen.R",
     "type": "r_source",
-    "hash": "3914693077",
+    "hash": "1266946246",
     "contents": "",
     "dirty": false,
     "created": 1600886656937.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
-        "cursorPosition": "101,0",
-        "scrollLine": "80"
+        "cursorPosition": "13,46",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1598977856,
+    "lastKnownWriteTime": 1602262276,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1598977856,
+    "last_content_update": 1602262276,
     "read_only": false,
     "read_only_alternatives": []
 }

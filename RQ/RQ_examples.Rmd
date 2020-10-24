@@ -1,0 +1,134 @@
+---
+title: "Inventory RQ"
+author: "adenadakuri"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+### Example1 (RQ)
+The annual demand for sugar at a local soft drink manufacturer is normally distributed with $\lambda$=800 tons and $\sigma$=25 tons. The delivery times for sugar is 5 working days.  
+We assume that there are 250 working days. 
+```{r}
+lambda11<-800#ton/year
+sigma11<-25
+
+leadTime11<- 5/250 #yr (tau)
+
+#a)
+demandTau11<-lambda11*leadTime11
+sigmaTau11<-sigma11*sqrt(leadTime11)
+
+safetyStock11<- 5#ton
+Q11<-20 #ton
+
+R11<-demandTau11+safetyStock11
+  
+#nivel de servicio 
+serviceLevel11<-pnorm(R11, demandTau11, sigmaTau11, TRUE) #Lo multiplico por el formato.
+serviceLevel11 
+
+#Tasa de resurtido (Fill rate)
+z11<-(R11-demandTau11)/sigmaTau11
+lostFunctionNormal<-function(x){exp(-(x^2)/2)/sqrt(2*pi)-x*(1-pnorm(x))}
+lostFunctionValue11<-lostFunctionNormal(z11)
+
+fillRate11<-1-(lostFunctionValue11*sigmaTau11/Q11)
+fillRate11
+
+#b serviceLevel=95% ^ fillRate=95%
+
+serviceLevel12<-0.95
+safetyStock12<- qnorm(serviceLevel12)*sigmaTau11
+
+fillRate12<-0.95
+Lz12<-Q11*(1-fillRate12)/sigmaTau11
+
+#USAR EL CODIGO DE LA TABLA DE MONCAYO
+#z<-lossFunctionTable[rowZ,1]
+#safetyStock3<-z*sigmaTau
+
+```
+
+El nivel de servicio que estamos dando es de `r serviceLevel11`
+
+
+### Example 3
+Textiles RU's, a textile sizing and dyeing plant uses a continuous review system (R,Q) to manage its dye inventory. The ordering cost is \$200, and a gallon of purple dye costs $5. Annual inventory holding cost is estimated at 20%. Expected annual demand is 10,000 gallons, and lead time demand is normally distributed with mean 400 and variance 900. 
+
+1. Find the lead time $\tau$. 
+``` {r}
+K<-200
+c<-5
+i<-0.2
+h<-i*c
+
+lambda<-10000
+lambdaTau<-400
+sigmaTau<-30
+
+#1)
+tau<-lambdaTau/lambda
+
+```
+
+Res.  Tau= `r tau`
+
+2. Find the reorder point for a service level of 90%, and the resulting safety stock.
+``` {r}
+alfa21<-0.9 #service level
+R21<-qnorm(alfa21,lambdaTau, sigmaTau)
+safetyStock21<-R21-lambdaTau
+
+```
+Res. El punto de reorden es de `r R21` galones.  El safety stock resultante es de `r safetyStock21`
+
+3. Because of delivery convenience, the order quantity is set as 1000 gallons. If the estimated shortage cost per gallon is \$4, what is the reorder level that minimises the total expected cost? 
+``` {r}
+Q23<-1000
+pi<-4
+
+R22<-qnorm(1-((Q23*h)/(pi*lambda)), lambdaTau, sigmaTau)
+safetyStock22<-R22-lambdaTau
+
+```
+Res. El punto de reorden resultante es de `r R22`, y el safety stock correspondiente es de `r safetyStock22`
+
+### Example 3
+Super-P is a peanut processing company. Past experience indicates that the annual
+demand is normally distributed with $\lambda$ = 25’000 tons and a standard deviation of $\sigma$ =
+36 tons. To order the peanuts, the company spends $50 to process the order. Each ton
+of peanut costs $1’000, and the annual interest rate for evaluating inventory holding
+cost is 25 percent. The penalty for a shortage is estimated to be $4 per ton. Ordering
+lead time is approximately one week.  
+
+Calculate the R* and Q*
+``` {r}
+#El problema es que si no conozco Q, no puedo encontrar el punto de reorden
+qOpt<-function(lambda, K, pi,nR, h){sqrt(2*lambda*(K+pi*nR)/h)}
+rOpt<-function(Q, h, pi, lambda, lambdaTau, sigmaTau){qnorm(1-((Q*h)/(pi*lambda)),lambdaTau, sigmaTau)}
+
+lambda31<-25000 
+tau31<-1*(1/52) #por que nos lo dan por semana.
+lambdaTau31<-lambda31*tau31
+
+sigma31<-36
+sigmaTau31<-sigma31*sqrt(tau31)
+
+K31<-50
+pi31<-4
+c31<-1000
+i31<-0.25
+
+h3<-i31*c31
+
+#Para j=0
+nR3<-0
+Q30<-qOpt(lambda31,K31,pi31, nR3, h3)
+R30<-rOpt(Q30,h3,pi31,lambda31,lambdaTau31, sigmaTau31)
+nR30<-lostFunctionNormal(1-((Q30*h3)/(pi31*lambda31)))*sigmaTau31
+
+```
+
+

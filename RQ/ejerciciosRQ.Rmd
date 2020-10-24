@@ -1,0 +1,75 @@
+---
+title: "RQ examples"
+output: html_notebook
+---
+## (R,Q) policy when $\lambda$
+Info Business Equipment (IBE) sells information–processing equipment. A hard drive, the HDO80
+1TB, has monthly demand uniformly distributed with parameters a = 150 units and b = 350 units.
+IBE purchases the HDO80 for \$360. To place an order costs \$20, and it takes one month from the time
+the order is placed until it arrives. The annual inventory cost carrying rate IBE uses is 20 percent.  
+If the paperwork cost to backorder an item is estimated to be $5 per unit, set a continuous
+review policy.  
+Compute the fulfil rate.  
+The manager is willing to state that 98 percent of the customer demand should be satisfied
+immediately. What is your recommendation now?
+
+```{r}
+####---------IBE-Uniform
+
+#lmabda ~ U(a,b)
+
+a <- 150
+b <- 350
+
+lambda <- 0.5*(a+b)
+
+c <- 360#$/un
+K <- 20#$
+tau <- 1#semana
+i <- .2/12 #%/mes
+pi <- 5#$/unidades
+
+h <- i*c
+
+##Usas j hasta que Q~R
+nRp<-0
+Q <- sqrt((2*lambda*(K+pi*nRp))/h)
+R <- a + (1-((Q*h)/(pi*lambda)) )*(b-a)
+expectedShortUnits <- integrate(function(D){ (D-R)*(1/(b-a)) },
+                                lower=R, upper=b)
+nRp <- expectedShortUnits$value
+i<-0
+
+eps<-2.2204e-16
+#intento de un while
+repeat{
+  i<-i+1
+  Qp<-Q
+  Rp<-R
+  Q <- sqrt((2*lambda*(K+pi*nRp))/h)
+  R <- a + (1-((Q*h)/(pi*lambda)) )*(b-a)
+  expectedShortUnits <- integrate(function(D){ (D-R)*(1/(b-a)) },
+                                  lower=R, upper=b)
+  nRp <- expectedShortUnits$value
+  if (abs(R-Rp)<eps || abs(Q-Qp)<eps || i>1000){break}
+}
+nRopt<-nRp
+qOpt<-Q
+rOpt<-R
+
+#b) beta=fulfill rate
+fillRate<-1-(nRopt/qOpt)
+
+#c) beta=0.98
+beta<-0.98
+Q<- sqrt((2*lambda*(K+pi*0))/h)
+nR<-Q*(1-beta)
+
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

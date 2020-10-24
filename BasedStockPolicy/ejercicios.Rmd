@@ -1,0 +1,118 @@
+---
+title: "Ejercicios de Based Stock Policy"
+output: html_notebook
+---
+ 
+## Ejercicio clase  
+Tenemos un sandwich que nos cuesta producir $10/unidad.  
+Nos cuesta producirlo $6/unidad  
+El precio de salvamento es de: $4/unidad  
+
+Tenemos un costo de transporte de $0.5 (que tiene que pagar el productor)  
+
+```{r}
+cu=10-6 #sobrantes
+paste("El costo de los sobrantes es de:  ", cu)
+co=6-4+0.5 #faltantes
+A<-rbind(c(1,2,3),c(2,2,2))
+print("La matriz A:")
+print(A)
+
+ratio<-cu/(co+cu) #critical ratio
+ paste("El critical ratio es de:  ", ratio)
+```
+
+## Lecturas relvantes:  
+https://medium.com/analytics-vidhya/newsvendor-inventory-problem-with-r-ccfc5a505f38  
+http://www.stat.umn.edu/geyer/old/5101/rlook.html   
+
+
+## Ejercicio 2
+
+```{r}
+sellingPrice = 10#$/unit
+salvage = 2
+productionCost = 3.5#$/unit
+
+co = productionCost - salvage
+cu = sellingPrice - productionCost
+criticalRatio<-cu/(cu+co)
+
+demand <- c(250,300,350,400,450,500) # pizza
+probabilities <- c(0.25,0.20,0.20,0.15,0.1,0.1) # pizza
+probabilitiesC<-cumsum(probabilities)
+
+#Para 350
+Q = 350
+NumOver <- ifelse(Q - demand >= 0, (Q - demand)*probabilities, 0)
+NumUnder <- ifelse(demand - Q >= 0, (demand - Q)*probabilities, 0)
+CostOver <- co*NumOver
+CostUnder <- cu*NumUnder
+TotalCost <- CostOver+CostUnder
+
+
+sumCostOver<-ceiling(sum(CostOver))
+sumCostUnder<-ceiling(sum(CostUnder))
+totCost<-ceiling(sum(TotalCost))
+
+#Pregunta 2
+probabilitiesC<-cumsum(probabilities)
+
+aprox<-which(abs(probabilitiesC - criticalRatio) == min(abs(probabilitiesC - criticalRatio)))
+optQ<-demand[aprox]
+
+#Pregunta 3
+Q2 = 400
+NumOver2 <- ifelse(Q2 - demand >= 0, (Q2 - demand)*probabilities, 0)
+NumUnder2 <- ifelse(demand - Q2 >= 0, (demand - Q2)*probabilities, 0)
+CostOver2 <- co*NumOver2
+CostUnder2 <- cu*NumUnder2
+TotalCost2 <- CostOver2+CostUnder2
+
+
+sumCostOver2<-ceiling(sum(CostOver2))
+sumCostUnder2<-ceiling(sum(CostUnder2))
+totCost2<-ceiling(sum(TotalCost2))
+
+
+Q3 = 450
+NumOver3 <- ifelse(Q3 - demand >= 0, (Q3 - demand)*probabilities, 0)
+NumUnder3<- ifelse(demand - Q3 >= 0, (demand - Q3)*probabilities, 0)
+CostOver3 <- co*NumOver3
+CostUnder3 <- cu*NumUnder3
+TotalCost3 <- CostOver3+CostUnder3
+
+
+sumCostOver3<-ceiling(sum(CostOver3))
+sumCostUnder3<-ceiling(sum(CostUnder3))
+totCost3<-ceiling(sum(TotalCost3))
+
+```
+
+
+
+
+## Ejercicio 4
+The Litengine Company manufactures piston engines for ultra-light aircraft. The company considers making a last production run of an old-model engine that is going to be eliminated within a year.  
+
+The unit production cost is \$1000, and the engine sells for \$1800. Engines not sold will be moved to a faraway junkyard, at a transportation and handling cost of \$180 per unit. The junkyard pays Litengine \$110 for each engine. Litengine estimates a goodwill loss of \$500 for any order short.  
+
+The demand pattern for the engine is exponential, with 
+
+``` {r}
+f<-function(x){(1/75)*exp(-1/75*x)}
+
+cu<-1800-1000+500
+co<-1000+180-110
+
+lambda<-1/75
+
+#encontrar el critical ratio
+ratio<-cu/(cu+co)
+
+#encontrar Qopt
+qOpt<-qexp(p=ratio, rate=lambda)
+
+```
+
+
