@@ -41,7 +41,6 @@ WW=function(lambda = c(0,0,0,0,0,0),
     pMin=min(CM[1:i,i])  #previous column minimum is stored
   }
   
-  
   # Results -----------------------------------------------------------------
 
   return(CM)
@@ -56,5 +55,4 @@ c = c(3,3,3,3,3,3)
 K = c(50,50,50,50,50,50)
 
 res=WW(lambda = lambda,h = h,c = c,K = K)
-res$cost
-res$petersonSilver
+res
