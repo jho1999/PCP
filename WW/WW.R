@@ -1,5 +1,4 @@
-#
-#
+#@authors: adeandak, sgonzalezab, jhernandezott
 #
 #
 
