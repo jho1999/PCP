@@ -1,0 +1,45 @@
+---
+title: "Stochastic Models (quiz5)"
+author: '@adeandakuri'
+date: "11/11/2020"
+output: html_document
+---
+
+## Ejercicio 1
+
+Rainbow Colors paint store uses an (R, Q) inventory system to control its stock levels. For a popular eggshell latex paint, historical data show that the distribution of monthly demand is approximately Exponential, with mean 100. Replenishment lead time for this paint is about 1.5 months. Each can of paint costs the store \$10. Although excess demands are back ordered, each unit of stockout costs about \$10 due to bookkeeping and loss-of-goodwill. Fixed cost of replenishment is $10 per order and holding costs are based on a 10% annual interest rate.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(include = FALSE)
+#Declaracion de las respuestas de la primer pregunta.
+res2_1<-1 #num cans in stock
+res2_2<-2 #cuantas cans pido
+res2_3<-1 #shortage of...
+res3<-1
+```
+### Pregunta 2:
+Set a continuous review policy:
+NOTE: round your answer to the nearest upper integer, for example, 3.05 is 4.   
+* Run 10 iteration of the algorithm (j = 10).    
+When the are cans `r res2_2` in stock; release an order for `r res2_2` cans. This will generate `r res2_3` short units of cans.
+
+### Pregunta 3:
+The fulfil rate of the above policy is: `r res3`
+
+```{r }
+#knitr::opts_chunk$set(echo = TRUE)
+
+
+#Declaracion de las respuestas de la primer pregunta.
+res2_1 #num cans in stock
+res2_2 #cuantas cans pido
+res2_3 #shortage of...
+```
+
+A store in a remote village in Nepal serves as the last stocking point for Himalaya climbing missions. The climbing season is short, and the store builds inventory before the season starts. Because of its remoteness, no replenishment is possible during the season. One of the items stocked is cracker boxes. Demand is estimated to be uniform between 200 and 400 crakers; i.e.,
+
+$$ f ( λ ) = \begin{cases} \frac{1}{200},& \text{ if } \lambda \in (200,400) \\ &\\ 0, & \text{ Otherwise } \end{cases} $$
+
+
+The store purchases the crackers for \$2.00 a box and sells them for \$8.00 per box. Unsold boxes are given away to charity at the end of the season. The store owner estimates that a penalty of $1.00 is accrued for every unsold box because of handling charges.
+
